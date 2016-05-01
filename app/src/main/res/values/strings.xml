@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Play</string>
+    <string name="sync_account_type">play.mal.beta.com</string>
+    <string name="content_authority">com.beta.mal.play</string>
+    <string name="action_sort_popular">Sort By Rates</string>
+    <string name="action_top_rated">Sort By Popularity</string>
+    <string name="action_refresh">Refresh</string>
+
+
+
+
+</resources>
