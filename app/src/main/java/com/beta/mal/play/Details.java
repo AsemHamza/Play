@@ -1,28 +1,49 @@
 package com.beta.mal.play;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.beta.mal.play.Fragments.DetailsView;
-import com.beta.mal.play.R;
 
-public class Details extends AppCompatActivity{
+public class Details extends AppCompatActivity {
 
+
+    FragmentManager FM = getFragmentManager();
+    FragmentTransaction T = FM.beginTransaction();
+    DetailsView detailsView = new DetailsView();
+
+    ///////////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         if (savedInstanceState == null) {
-
             Bundle arguments = new Bundle();
             arguments.putParcelable(DetailsView.DETAIL_URI, getIntent().getData());
-
-            DetailsView fragment = new DetailsView();
-            fragment.setArguments(arguments);
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.detail_container, fragment)
-                    .commit();
+            detailsView.setArguments(arguments);
+            T.add(R.id.detail_container, detailsView, "detailsView");
+            T.commit();
         }
     }
+
+
+    ///////////////////////////////////////////////////////////////////
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    ///////////////////////////////////////////////////////////////////
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

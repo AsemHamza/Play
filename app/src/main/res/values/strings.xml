@@ -2,9 +2,17 @@
     <string name="app_name">Play</string>
     <string name="sync_account_type">play.mal.beta.com</string>
     <string name="content_authority">com.beta.mal.play</string>
-    <string name="action_sort_popular">Sort By Rates</string>
-    <string name="action_top_rated">Sort By Popularity</string>
-    <string name="action_refresh">Refresh</string>
+    <string name="action_sort_popular">Sort By Popularity</string>
+    <string name="action_top_rated">Sort By Rates</string>
+    <string name="action_favorite">Show favorites</string>
+
+
+    <string name="sort_popular">popular</string>
+    <string name="sort_top_rated">top_rated</string>
+    <string name="sort_fav">fav</string>
+
+
+    <bool name="isTablet">false</bool>
 
 
 

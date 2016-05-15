@@ -14,9 +14,9 @@
         android:title="@string/action_top_rated"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_refresh"
+        android:id="@+id/action_favorite"
         android:orderInCategory="300"
-        android:title="@string/action_refresh"
+        android:title="@string/action_favorite"
         app:showAsAction="never" />
 
 </menu>
