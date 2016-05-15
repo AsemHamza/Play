@@ -21,10 +21,8 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
 
 
     private boolean mTwoPane;
-    FragmentManager FM = getFragmentManager();
-    FragmentTransaction T = FM.beginTransaction();
+
     MoviesView moviesView = new MoviesView();
-    DetailsView detailsView = new DetailsView();
     static String sort_type = "popular";
 
     public static String getSortBy() {
@@ -36,6 +34,8 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+        FragmentManager FM1 = getFragmentManager();
+        FragmentTransaction T1 = FM1.beginTransaction();
         boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
         LinearLayout dView = (LinearLayout) findViewById(R.id.main_layout2);
         if (tabletSize) {
@@ -48,8 +48,8 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
             mTwoPane = true;
             Log.d("Photon", "Two Pane");
         }
-        T.add(R.id.main_layout, moviesView, "moviesView");
-        T.commit();
+        T1.add(R.id.main_layout1, moviesView, "moviesView");
+        T1.commit();
         PlaySyncAdapter.initializeSyncAdapter(this);
     }
 
@@ -110,14 +110,21 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
                     .setData(movieUri);
             startActivity(intent);
         } else {
+            FragmentManager FM2 = getFragmentManager();
+            FragmentTransaction T2 = FM2.beginTransaction();
+            DetailsView detailsView = new DetailsView();
             Bundle extras = new Bundle();
             extras.putParcelable("URI", movieUri);
             detailsView.setArguments(extras);
             invalidateOptionsMenu();
-            T.replace(R.id.main_layout2, detailsView);
-            T.commit();
+            T2.replace(R.id.main_layout2, detailsView);
+            T2.addToBackStack(null);
+            T2.commit();
+
         }
-    }
+
+
+}
 
     ///////////////////////////////////////////////////////////////////
     @Override
