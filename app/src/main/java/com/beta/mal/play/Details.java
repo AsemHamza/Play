@@ -4,8 +4,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.beta.mal.play.Fragments.DetailsView;
 
@@ -30,20 +28,5 @@ public class Details extends AppCompatActivity {
         }
     }
 
-
-    ///////////////////////////////////////////////////////////////////
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    ///////////////////////////////////////////////////////////////////
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        return super.onOptionsItemSelected(item);
-    }
 
 }
