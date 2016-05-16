@@ -43,13 +43,16 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
         }
         if (dView == null) {
             mTwoPane = false;
+            T1.add(R.id.main_layout, moviesView, "moviesView");
+            T1.commit();
             Log.d("Photon", "One Pane");
         } else {
             mTwoPane = true;
+            T1.add(R.id.main_layout1, moviesView, "moviesView");
+            T1.commit();
             Log.d("Photon", "Two Pane");
         }
-        T1.add(R.id.main_layout1, moviesView, "moviesView");
-        T1.commit();
+
         PlaySyncAdapter.initializeSyncAdapter(this);
     }
 
@@ -68,35 +71,20 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
             sort_type = "popular";
             moviesView.showFav = false;
             PlaySyncAdapter.sorting = sort_type;
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-            ContentResolver.requestSync(PlaySyncAdapter.getSyncAccount(this), getString(R.string.content_authority), bundle);
-            finish();
-            startActivity(getIntent());
+            restartActivity();
             return true;
         }
         if (id == R.id.action_sort_top) {
             sort_type = "top_rated";
             moviesView.showFav = false;
             PlaySyncAdapter.sorting = sort_type;
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-            ContentResolver.requestSync(PlaySyncAdapter.getSyncAccount(this), getString(R.string.content_authority), bundle);
-            finish();
-            startActivity(getIntent());
+            restartActivity();
             return true;
         }
         if (id == R.id.action_favorite) {
             sort_type = "fav";
             moviesView.showFav = true;
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-            bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-            ContentResolver.requestSync(PlaySyncAdapter.getSyncAccount(this), getString(R.string.content_authority), bundle);
-            finish();
-            startActivity(getIntent());
+            restartActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -125,7 +113,14 @@ public class Movies extends AppCompatActivity implements MoviesView.Callback {
 
 
 }
-
+    public void restartActivity() {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+        ContentResolver.requestSync(PlaySyncAdapter.getSyncAccount(this), getString(R.string.content_authority), bundle);
+        finish();
+        startActivity(getIntent());
+    }
     ///////////////////////////////////////////////////////////////////
     @Override
     public void onRestart() {
